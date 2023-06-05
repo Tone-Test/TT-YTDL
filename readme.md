@@ -22,7 +22,7 @@ TT-YTDL is a simple command-line tool for downloading YouTube videos and audio f
 1. Open a terminal or command prompt. 
 2. Navigate to the directory where you saved the  tt-ytdl.py  script. 
 3. Run the script using the command:  python tt-ytdl.py  
-4. Follow the on-screen prompts to download videos, audio files, or both. You can also change the download directory and text color. 
+4. Follow the on-screen prompts to download videos, audio files, or both. You can also change the download directory and text color in the settings menu. 
 
 ## Customizing Text Color 
  
