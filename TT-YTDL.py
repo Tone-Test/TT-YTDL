@@ -1,13 +1,12 @@
 import os
 import configparser
 import pytube
-import threading
 import time
 import sys
 import re
-import imageio_ffmpeg as ffmpeg
 import colorama
 from colorama import Fore, Style
+from pytube import Playlist
 CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".TT-YTDL_config.ini")
 colorama.init()
 def sanitize_filename(filename):
@@ -34,7 +33,7 @@ def download_video(video_url):
     youtube.register_on_progress_callback(on_progress)
     sanitized_title = sanitize_filename(video.title)
     video_path = os.path.join(VIDEO_DIR, sanitized_title + ".mp4")
-    if check_downloaded(video.title, ".mp4", "Video-MYTDL"):
+    if check_downloaded(video.title, ".mp4", "Video-TT-YTDL"):
         print("Video has already been downloaded:", video_path)
         return
     start_time = time.time()
@@ -50,7 +49,7 @@ def download_audio(video_url):
     youtube.register_on_progress_callback(on_progress)
     sanitized_title = sanitize_filename(audio.title)
     audio_path = os.path.join(AUDIO_DIR, sanitized_title + ".mp3")
-    if check_downloaded(audio.title, ".mp3", "Audio-MYTDL"):
+    if check_downloaded(audio.title, ".mp3", "Audio-TT-YTDL"):
         print("Audio has already been downloaded:", audio_path)
         return
     start_time = time.time()
@@ -59,6 +58,21 @@ def download_audio(video_url):
 def download_both(video_url):
     download_video(video_url)
     download_audio(video_url)
+def download_playlist_videos(playlist_url):
+    playlist = Playlist(playlist_url)
+    print(f"Downloading {len(playlist.video_urls)} videos from the playlist...")
+    for video_url in playlist.video_urls:
+        download_video(video_url)
+def download_playlist_audios(playlist_url):
+    playlist = Playlist(playlist_url)
+    print(f"Downloading {len(playlist.video_urls)} audios from the playlist...")
+    for video_url in playlist.video_urls:
+        download_audio(video_url)
+def download_playlist_both(playlist_url):
+    playlist = Playlist(playlist_url)
+    print(f"Downloading {len(playlist.video_urls)} videos and audios from the playlist...")
+    for video_url in playlist.video_urls:
+        download_both(video_url)
 def get_download_dir():
     global DOWNLOAD_DIR, AUDIO_DIR, VIDEO_DIR
     if not os.path.isfile(CONFIG_PATH):
@@ -69,8 +83,8 @@ def get_download_dir():
     config = configparser.ConfigParser()
     config.read(CONFIG_PATH)
     DOWNLOAD_DIR = config["DEFAULT"]["download_dir"]
-    AUDIO_DIR = os.path.join(DOWNLOAD_DIR, "Audio-MYTDL")
-    VIDEO_DIR = os.path.join(DOWNLOAD_DIR, "Video-MYTDL")
+    AUDIO_DIR = os.path.join(DOWNLOAD_DIR, "Audio-TT-YTDL")
+    VIDEO_DIR = os.path.join(DOWNLOAD_DIR, "Video-TT-YTDL")
     if not os.path.exists(AUDIO_DIR):
         os.makedirs(AUDIO_DIR)
     if not os.path.exists(VIDEO_DIR):
@@ -103,19 +117,41 @@ def get_text_color():
         return Fore.CYAN
     else:
         return Fore.GREEN
+def settings_menu():
+    while True:
+        print("Settings:")
+        print("(1) Change download location")
+        print("(2) Change text color")
+        print("(3) Back to main menu")
+        choice = input("Pick an option:")
+        if choice == "1":
+            download_dir = input("Please enter the new download directory: ")
+            set_download_dir(download_dir)
+            DOWNLOAD_DIR = download_dir
+        elif choice == "2":
+            color = input("Please enter the new text color (Green, Red, Blue, Cyan): ")
+            set_text_color(color)
+            TEXT_COLOR = get_text_color()
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice, please try again.")
 if __name__ == "__main__":
     TEXT_COLOR = get_text_color()
     print(TEXT_COLOR + "Welcome to TT-YTDL!")
     DOWNLOAD_DIR = get_download_dir()
     print("Your default download directory is:", DOWNLOAD_DIR)
     while True:
+        TEXT_COLOR = get_text_color()  # Add this line to update the color instantly
         print(TEXT_COLOR + "Options:")
         print("(1) Video")
         print("(2) Audio")
         print("(3) Both")
-        print("(4) Change download location")
-        print("(5) Change text color")
-        print("(6) Exit")
+        print("(4) Playlist Video")
+        print("(5) Playlist Audio")
+        print("(6) Playlist Both")
+        print("(7) Settings")
+        print("(8) Exit")
         choice = input("Pick an option:")
         if choice == "1":
             video_url = input("Please enter the YouTube video URL: ")
@@ -130,15 +166,30 @@ if __name__ == "__main__":
             download_both(video_url)
             print("\n")
         elif choice == "4":
-            download_dir = input("Please enter the new download directory: ")
-            set_download_dir(download_dir)
-            DOWNLOAD_DIR = download_dir
+            playlist_url = input("Please enter the YouTube playlist URL: ")
+            confirm = input("This will download video for each item in the playlist. Are you sure? (y/N): ")  # Add this line
+            if confirm.lower() == "y":  # Add this line
+                download_playlist_videos(playlist_url)
+            else:  # Add this line
+                print("Cancelled playlist video download.")  # Add this line
+            print("\n")
         elif choice == "5":
-            color = input("Please enter the new text color (Green, Red, Blue, Cyan): ")
-            set_text_color(color)
-            TEXT_COLOR = get_text_color()
+            playlist_url = input("Please enter the YouTube playlist URL: ")
+            download_playlist_audios(playlist_url)
+            print("\n")
         elif choice == "6":
+            playlist_url = input("Please enter the YouTube playlist URL: ")
+            confirm = input("This will download both video and audio for each item in the playlist. Are you sure? (y/N): ")
+            if confirm.lower() == "y":
+                download_playlist_both(playlist_url)
+            else:
+                print("Cancelled playlist download.")
+            print("\n")
+        elif choice == "7":
+            settings_menu()
+        elif choice == "8":
             print("Thank you for using TT-YTDL!")
             break
         else:
             print("Invalid choice, please try again.")
+            
