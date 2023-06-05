@@ -10,6 +10,7 @@ TT-YTDL is a simple command-line tool for downloading YouTube videos and audio f
 - Customize the download directory 
 - Change the text color in the command-line interface 
 - Check for existing downloads to avoid duplicate files 
+- Download Playlists in Audio and Video
  
 ## Installation 
  
