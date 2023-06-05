@@ -1,6 +1,6 @@
 ## TT-YTDL
  
-TT-YTDL is a simple command-line tool for downloading YouTube videos and audio files. Written in Python, it provides an easy-to-use interface for downloading your favorite content in various formats. The tool also allows you to customize the download directory and text color for a personalized experience. 
+TT-YTDL is a simple command-line tool for downloading YouTube videos and audio files aswell as playlists. Written in Python, it provides an easy-to-use interface for downloading your favorite content in various formats. The tool also allows you to customize the download directory and text color for a personalized experience. 
  
 ## Features 
  
