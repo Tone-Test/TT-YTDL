@@ -14,7 +14,7 @@ TT-YTDL is a simple command-line tool for downloading YouTube videos and audio f
  
 ## Installation 
  
-1. Install Python (version 3.6 or higher) on your system. 
+1. Install Python (version 3.11 or higher) on your system. 
 2. Install the required Python packages by running:  pip install -r requirements.txt  
 3. Download the TT-YTDL.py  script and save it to a directory of your choice. 
  
