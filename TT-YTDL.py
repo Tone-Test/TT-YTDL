@@ -1,6 +1,5 @@
 import os
 import configparser
-import pytube
 import time
 import sys
 import re
