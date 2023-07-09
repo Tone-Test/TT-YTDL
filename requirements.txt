@@ -2,6 +2,5 @@ colorama==0.4.4
 configparser==5.0.2
 ctypes==1.1.0
 platform==1.0.8
-pytube==11.0.1
 re==2.2.1
 youtube_dl==2021.6.6
