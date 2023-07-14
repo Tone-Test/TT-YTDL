@@ -50,5 +50,5 @@ To change the text color, simply enter the desired color when prompted.
  
 ## Contributing 
  
-I welcome contributions to TT-YTDL! If you'd like to contribute, please feel free to submit a pull request or open an issue on GitHub. 
+I welcome contributions to TT-YTDL! If you'd like to contribute, please feel free to submit a pull request or an issue. 
  
