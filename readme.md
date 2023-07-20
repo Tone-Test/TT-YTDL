@@ -33,8 +33,8 @@ TT-YTDL is a simple CLI tool to download youtube videos simply and efficiently.
 3. Run the script using the command:  ```python tt-ytdl.py```  
 4. Follow the on-screen prompts to download videos, audio files, or both. You can also change the download directory and text color in the settings menu. 
 
-## Alt usage method
- Just double click in your file manager. For linux, makesure to make it executable, to do so, right click the file, click proporties, and in the window that pops up, click permissions, and click "Allow Executing" or similar.
+~~## Alt usage method
+ Just double click in your file manager. For linux, makesure to make it executable, to do so, right click the file, click proporties, and in the window that pops up, click permissions, and click "Allow Executing" or similar.~~
 
 ## Downloading above 720p
    Go to settings, advanced, and Choose video resolution. Then you can pick the resolution you want your videos to be downloaded in. As mentioned above, the script will automatically retry downloading the video if the resolution you picked is not available for the video you are downloading.
