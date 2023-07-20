@@ -23,7 +23,7 @@ TT-YTDL is a simple CLI tool to download youtube videos simply and efficiently.
 
 
 ## To fix youtube-dl downloading error "unable to extract uploader id"
-   Run ```python3 -m pip install --force-reinstall https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz``` on your system. This will work with Windows and Linux. Im not too sure on MacOS 
+   Run ``pip install youtube-dl --pre --upgrade``` on your system. This will work with Windows and Linux. Im not too sure on MacOS 
 
 
 ## Usage 
