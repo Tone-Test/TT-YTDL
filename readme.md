@@ -19,12 +19,10 @@ TT-YTDL is a simple CLI tool to download youtube videos simply and efficiently.
  
 1. Install Python (version 3.11 or higher) on your system. 
 2. Download the TT-YTDL.py  script and save it to a directory of your choice.
-3. Install the required Python packages by running:  ```pip install -r requirements.txt```  
+3. Install the required Python packages by running:  ```pip install -r requirements.txt```   
 
-
-## To fix youtube-dl downloading error "unable to extract uploader id"
-   Run ``pip install youtube-dl --pre --upgrade``` on your system. This will work with Windows and Linux. Im not too sure on MacOS 
-
+## How to install youtube-dl for the script to work
+   Run ```pip install youtube-dl --pre --upgrade``` on your system. This will work with Windows and Linux. Im not too sure on MacOS
 
 ## Usage 
  
