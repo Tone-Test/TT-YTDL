@@ -65,6 +65,7 @@ def download_video(video_url, resolution=None):
     ydl_opts = {
         'outtmpl': os.path.join(VIDEO_DIR, '%(title)s.%(ext)s'),
         'progress_hooks': [on_progress],
+        'format': f'bestvideo[height<={resolution}][fps<=60]+bestaudio/best[height<={resolution}][fps<=60]'
     }
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
@@ -74,9 +75,6 @@ def download_video(video_url, resolution=None):
             if check_downloaded(info['title'], ".mp4", "Video-TT-YTDL"):
                 print("Video has already been downloaded:", video_path)
                 return
-             # Get the fallback resolution
-            resolution = get_fallback_resolution(info, resolution)
-            ydl_opts['format'] = f'bestvideo[height<={resolution}][fps<=60]+bestaudio/best[height<={resolution}][fps<=60]'
             ydl.download([video_url])
             print("\nVideo downloaded successfully:", video_path)
     except youtube_dl.utils.DownloadError:
