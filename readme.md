@@ -22,7 +22,7 @@ TT-YTDL is a simple CLI tool to download youtube videos simply and efficiently.
 3. Install the required Python packages by running:  ```pip install -r requirements.txt```   
 
 ## How to install youtube-dl for the script to work
-   Run ```pip install youtube-dl --pre --upgrade``` on your system. This will work with Windows and Linux. Im not too sure on MacOS
+   Run ```python -m pip install --force-reinstall (LATEST NIGHTLY RELEASE.tar.gz)``` on your system. This will work with Windows and Linux. Im not too sure on MacOS
 
 ## Usage 
  
