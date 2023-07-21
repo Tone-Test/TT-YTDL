@@ -8,6 +8,8 @@ from colorama import Fore, Style
 import youtube_dl
 import ctypes
 import platform
+import pytube
+from pytube import Playlist
 CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".TT-YTDL_config.ini")
 colorama.init()
 def download_video_with_opts(video_url, ydl_opts):
